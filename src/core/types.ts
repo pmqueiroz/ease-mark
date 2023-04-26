@@ -1,6 +1,24 @@
+export interface InlineQueue {
+   src: string
+   tokens: Token[]
+}
+
 export enum TokensType {
    heading = 'heading',
-   code = 'heading',
+   code = 'code',
+   text = 'text',
+   space = 'space'
+}
+
+export interface TextToken {
+   type: TokensType.text,
+   raw: string,
+   text: string
+}
+
+export interface SpaceToken {
+   type: TokensType.space,
+   raw: string,
 }
 
 export interface HeadingToken {
@@ -17,4 +35,4 @@ export interface FencesToken {
    content: string
 }
 
-export type Token = HeadingToken | FencesToken
+export type Token = HeadingToken | FencesToken | TextToken | SpaceToken

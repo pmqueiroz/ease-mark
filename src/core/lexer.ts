@@ -1,16 +1,16 @@
 import { Tokenizer } from './tokenizer'
-import { Token } from './types'
+import { InlineQueue, Token } from './types'
 
 interface LexerOptions {}
 
 export class Lexer {
    public tokens: Token[]
-   private inlineQueue: string[]
+   private inlineQueue: InlineQueue[]
    private tokenizer: Tokenizer
 
    private constructor(options: LexerOptions) {
       this.tokens = []
-      this.inlineQueue = [];
+      this.inlineQueue = []
       this.tokenizer = new Tokenizer()
    }
 
@@ -32,16 +32,42 @@ export class Lexer {
 
       while (src) {
          if (token = this.tokenizer.heading(src)) {
-            src = src.substring(token.raw.length);
-            tokens.push(token);
-            continue;
+            src = this.shiftSource(src, token)
+            tokens.push(token)
+            continue
          }
 
          if (token = this.tokenizer.fences(src)) {
-            src = src.substring(token.raw.length);
-            tokens.push(token);
-            continue;
-          }
+            src = this.shiftSource(src, token)
+            tokens.push(token)
+            continue
+         }
+
+         if (token = this.tokenizer.space(src)) {
+            src = this.shiftSource(src, token)
+
+            if (token.raw.length === 1 && tokens.length > 0) {
+               tokens[tokens.length - 1].raw += '\n'
+            } else {
+               tokens.push(token)
+            }
+            continue
+         }
+
+         if (token = this.tokenizer.text(src)) {
+            src = this.shiftSource(src, token)
+
+            tokens.push(token)
+            continue
+         }
+
+         if (src) {
+            throw new Error('infinite loop')
+         }
       }
+   }
+
+   private shiftSource(src: string, token: Token) {
+      return src.substring(token.raw.length)
    }
 }

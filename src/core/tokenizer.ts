@@ -1,5 +1,5 @@
 import { rules } from './rules'
-import { FencesToken, HeadingToken, TokensType } from './types'
+import { FencesToken, HeadingToken, TokensType, TextToken, SpaceToken } from './types'
 
 export class Tokenizer {
    constructor() {}
@@ -40,6 +40,33 @@ export class Tokenizer {
         raw,
         language,
         content
+      }
+   }
+
+   text(src: string): TextToken | undefined  {
+      const cap = rules.block.text.exec(src)
+      
+      if(!cap) return
+
+      const [raw] = cap
+
+      return {
+         type: TokensType.text,
+         raw: raw,
+         text: raw
+      }
+   }
+
+   space(src: string): SpaceToken | undefined {
+      const cap = rules.block.newline.exec(src)
+      
+      if (cap && cap[0].length > 0) {
+         const [raw] = cap
+
+         return {
+            type: TokensType.space,
+            raw: raw
+         }
       }
    }
 }
