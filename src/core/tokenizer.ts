@@ -1,15 +1,15 @@
-import { rules } from './rules'
+import { matcher } from './rules'
 import { FencesToken, HeadingToken, TokensType, TextToken, SpaceToken } from './types'
 
 export class Tokenizer {
    constructor() {}
 
    heading(src: string): HeadingToken | undefined {
-      const cap = rules.block.heading.exec(src)
+      const matchResult = matcher('heading', src)
 
-      if(!cap) return
+      if(!matchResult) return
 
-      const [rawCap, headLevel, rawTest] = cap
+      const [rawMatch, headLevel, rawTest] = matchResult
 
       const depth = {
          '.': 1,
@@ -22,18 +22,18 @@ export class Tokenizer {
 
       return {
          type: TokensType.heading,
-         raw: rawCap,
+         raw: rawMatch,
          depth,
          text: rawTest.trim(),
       }
    }
 
    fences(src: string): FencesToken | undefined {
-      const cap = rules.block.fences.exec(src)
+      const matchResult = matcher('fences', src)
 
-      if(!cap) return
+      if(!matchResult) return
 
-      const [raw,, language, content] = cap
+      const [raw,, language, content] = matchResult
 
       return {
         type: TokensType.code,
@@ -44,11 +44,11 @@ export class Tokenizer {
    }
 
    text(src: string): TextToken | undefined  {
-      const cap = rules.block.text.exec(src)
+      const matchResult = matcher('text', src)
       
-      if(!cap) return
+      if(!matchResult) return
 
-      const [raw] = cap
+      const [raw] = matchResult
 
       return {
          type: TokensType.text,
@@ -58,10 +58,10 @@ export class Tokenizer {
    }
 
    space(src: string): SpaceToken | undefined {
-      const cap = rules.block.newline.exec(src)
+      const matchResult = matcher('newline', src)
       
-      if (cap && cap[0].length > 0) {
-         const [raw] = cap
+      if (matchResult && matchResult[0].length > 0) {
+         const [raw] = matchResult
 
          return {
             type: TokensType.space,
