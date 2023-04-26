@@ -35,6 +35,12 @@ export class Lexer {
             src = src.substring(token.raw.length);
             tokens.push(token);
             continue;
+         }
+
+         if (token = this.tokenizer.fences(src)) {
+            src = src.substring(token.raw.length);
+            tokens.push(token);
+            continue;
           }
       }
    }
