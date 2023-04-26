@@ -22,12 +22,12 @@ export class Lexer {
    private lex(src: string) {
       const normalizedNewLine = src.replace(/\r\n|\r/g, '\n')
 
-      this.blockTokens(normalizedNewLine, this.tokens)
+      this.feedTokens(normalizedNewLine, this.tokens)
 
       return this.tokens
    }
 
-   private blockTokens(src: string, tokens: Token[]) {
+   private feedTokens(src: string, tokens: Token[]) {
       let token: Token | undefined
 
       while (src) {
