@@ -5,12 +5,10 @@ interface LexerOptions {}
 
 export class Lexer {
    public tokens: Token[]
-   private inlineQueue: InlineQueue[]
    private tokenizer: Tokenizer
 
    private constructor(options: LexerOptions) {
       this.tokens = []
-      this.inlineQueue = []
       this.tokenizer = new Tokenizer()
    }
 
