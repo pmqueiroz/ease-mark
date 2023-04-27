@@ -15,11 +15,26 @@ const resolvePlaceholder = (placeholder: Placeholder) => {
    return placeholder
 }
 
-export const parse = (literals: TemplateStringsArray, ...placeholders: Placeholder[]) => {
+interface Parser {
+   (content: string): string
+   (content: TemplateStringsArray, ...placeholders: Placeholder[]): string
+}
+
+const process = (content: string) => {
+   const tokens = Lexer.lex(content, {})
+   
+   return render(tokens)
+}
+
+export const parse: Parser = (content, ...placeholders: Placeholder[]) => {
+   if(typeof content === 'string') {
+      return process(content)
+   }
+
    let parsedLiterals = "";
    
    for (let i = 0; i < placeholders.length; i++) {
-      parsedLiterals += literals[i];
+      parsedLiterals += content[i];
       parsedLiterals += resolvePlaceholder(placeholders[i])
          .replace(/&/g, '&amp;')
          .replace(/"/g, '&quot;')
@@ -28,9 +43,7 @@ export const parse = (literals: TemplateStringsArray, ...placeholders: Placehold
          .replace(/>/g, '&gt;');
    }
 
-   parsedLiterals += literals[literals.length - 1];
+   parsedLiterals += content[content.length - 1];
 
-   const tokens = Lexer.lex(parsedLiterals, {})
-   
-   return render(tokens)
+   return process(parsedLiterals)
 }
