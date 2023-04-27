@@ -13,8 +13,6 @@ str name <- "Pedro"
 
 describe('Lexer', () => {
    test('heading', () => {
-      const tokens = Lexer.lex(code, {})
-      
-      console.log(tokens)
+      Lexer.lex(code, {})
    })
 })

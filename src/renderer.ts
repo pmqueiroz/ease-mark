@@ -1,14 +1,15 @@
 import { TokensType, Token, FencesToken, HeadingToken, TextToken } from './types'
+import { compile, TemplateDelegate } from 'handlebars'
 
-export const renderMap: Record<TokensType, (token: any) => string> = {
-   code: ({ language, content }: FencesToken) => {
-      return `<pre><code ${language ? `class="${language}"` : ''}>`  
-      + content
+const renderMap: Record<TokensType, TemplateDelegate> = {
+   code: compile(
+      '<pre><code {{#if language}}class="{{language}}" {{/if}}>'
+      + '{{ content }}'
       + '</code></pre>'
-   },
-   heading: ({ depth, text }: HeadingToken) => {
-      return `<h${depth}>${text}</h${depth}>`
-   },
+   ),
+   heading: compile(
+      '<h{{depth}}>{{text}}</h{{depth}}>'
+   ),
    text: ({ text }: TextToken) => text,
    space: () => ''
 }
