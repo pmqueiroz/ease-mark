@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/pmqueiroz/ease-mark/compare/1.1.0...1.1.1) (2023-04-27)
+
+
+### Bug Fixes
+
+* accidental new line ([b1708a2](https://github.com/pmqueiroz/ease-mark/commit/b1708a264df4d2cc1360fa7a975e91d766f59acd))
+
 # [1.1.0](https://github.com/pmqueiroz/ease-mark/compare/1.0.0...1.1.0) (2023-04-27)
 
 
