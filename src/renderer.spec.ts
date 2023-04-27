@@ -21,7 +21,7 @@ some paragraph
 
 const expectedHtml = `\
 <h1>Hello</h1>
-some paragraph
+<p>some paragraph</p>
 
 <pre><code class="language-js">   const someJSCode &#x3D; &#x27;hello&#x27;
 

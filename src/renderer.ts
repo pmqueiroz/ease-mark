@@ -10,7 +10,9 @@ const renderMap: Record<TokensType, TemplateDelegate> = {
    heading: compile(
       '<h{{depth}}>{{text}}</h{{depth}}>'
    ),
-   text: ({ text }: TextToken) => text,
+   text: compile(
+      '<p>{{text}}</p>'
+   ),
    space: () => ''
 }
 
