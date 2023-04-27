@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/pmqueiroz/ease-mark/compare/1.0.0...1.1.0) (2023-04-27)
+
+
+### Features
+
+* fences rendered improvements ([7622110](https://github.com/pmqueiroz/ease-mark/commit/7622110a14e18ac00364d57281941e246fc88c78))
+
 # 1.0.0 (2023-04-27)
 
 
