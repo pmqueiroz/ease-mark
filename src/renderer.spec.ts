@@ -23,16 +23,14 @@ const expectedHtml = `\
 <h1>Hello</h1>
 some paragraph
 
-<pre><code class="language-js">
-   const someJSCode &#x3D; &#x27;hello&#x27;
+<pre><code class="language-js">   const someJSCode &#x3D; &#x27;hello&#x27;
 
    function() {
       console.log(&#x27;world&#x27;)
    }
 </code></pre>
 
-<pre><code>
-   cleiton cleiton
+<pre><code>   cleiton cleiton
 </code></pre>\
 `
 
