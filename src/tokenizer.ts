@@ -28,7 +28,7 @@ export class Tokenizer {
       }
    }
 
-   fences(src: string): FencesToken | undefined {
+   fences(src: string, languagePrefix: string): FencesToken | undefined {
       const matchResult = matcher('fences', src)
 
       if(!matchResult) return
@@ -38,7 +38,8 @@ export class Tokenizer {
       return {
         type: TokensType.code,
         raw,
-        language,
+        language: language,
+        languagePrefix,
         content
       }
    }

@@ -3,9 +3,9 @@ import { compile, TemplateDelegate } from 'handlebars'
 
 const renderMap: Record<TokensType, TemplateDelegate> = {
    code: compile(
-      '<pre><code {{#if language}}class="{{language}}" {{/if}}>'
+      '<pre><code{{#if language}} class="{{languagePrefix}}{{language}}"{{/if}}>\n'
       + '{{ content }}'
-      + '</code></pre>'
+      + '\n</code></pre>'
    ),
    heading: compile(
       '<h{{depth}}>{{text}}</h{{depth}}>'

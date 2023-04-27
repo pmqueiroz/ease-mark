@@ -1,13 +1,21 @@
 import { Tokenizer } from './tokenizer'
-import { InlineQueue, Token } from './types'
+import { Token } from './types'
 
-interface LexerOptions {}
+const defaultConfig: Required<LexerOptions> = {
+   languagePrefix: 'language-'
+}
+
+interface LexerOptions {
+   languagePrefix?: string
+}
 
 export class Lexer {
    public tokens: Token[]
    private tokenizer: Tokenizer
+   private options: Required<LexerOptions>
 
-   private constructor(options: LexerOptions) {
+   private constructor(options?: LexerOptions) {
+      this.options = Object.assign({}, defaultConfig, options)
       this.tokens = []
       this.tokenizer = new Tokenizer()
    }
@@ -35,7 +43,7 @@ export class Lexer {
             continue
          }
 
-         if (token = this.tokenizer.fences(src)) {
+         if (token = this.tokenizer.fences(src, this.options.languagePrefix)) {
             src = this.shiftSource(src, token)
             tokens.push(token)
             continue

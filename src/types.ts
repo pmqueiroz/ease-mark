@@ -32,6 +32,7 @@ export interface FencesToken {
    type: TokensType.code
    raw: string
    language: string
+   languagePrefix: string
    content: string
 }
 
