@@ -10,6 +10,13 @@
 
 ## Instalation
 
+Create a file in the root named `.npmrc` containing this config:
+
+```
+@pmqueiroz:registry=https://npm.pkg.github.com 
+```
+And then run install:
+
 ```sh
 npm install @pmqueiroz/ease-mark
 yarn add @pmqueiroz/ease-mark
