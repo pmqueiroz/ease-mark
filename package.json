@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "pnpm vitest"
+    "test": "pnpm vitest",
+    "build": "rm -rf dist && tsc"
   },
   "keywords": [],
   "author": "",
