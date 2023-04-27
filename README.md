@@ -32,7 +32,7 @@ Parse a string source ease-mark
 ```ts
 import { parse } from '@pmqueiroz/ease-mark'
 
-parse('.: Hello word') // <h3>Hello World<h1/>
+parse('.: Hello word') // <h3>Hello World<h3/>
 ```
 
 Using as tagged template function
@@ -42,7 +42,7 @@ import { parse } from '@pmqueiroz/ease-mark'
 
 const hello = (name: string) => 'Hello ' + name
 
-parse`.: ${() => hello('World')}` // <h3>Hello World<h1/>
+parse`.: ${() => hello('World')}` // <h3>Hello World<h3/>
 ```
 
 ## Syntax
