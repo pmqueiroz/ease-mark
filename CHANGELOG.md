@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pmqueiroz/ease-mark/compare/1.1.1...1.2.0) (2023-04-27)
+
+
+### Features
+
+* wrap paragraph into p tag ([1f616bc](https://github.com/pmqueiroz/ease-mark/commit/1f616bcd7ceb20022e1d20ba7616d6a52f87c331))
+
 ## [1.1.1](https://github.com/pmqueiroz/ease-mark/compare/1.1.0...1.1.1) (2023-04-27)
 
 
